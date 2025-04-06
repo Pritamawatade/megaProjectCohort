@@ -1,0 +1,51 @@
+file should be handled by multer. 
+
+assignments: 
+// write down controllers. don't use LLM
+ // auth controllers
+    1.registerUser
+    2. login user 
+    3. logout user
+    4. verify email
+    5. resend verification email
+    6. refreshaccessToken
+    7. forgot password request
+    8. changeCurrent password
+    9. get currentUser
+
+
+// project controllers
+    1. create project 
+    2.update
+    3. delete
+    4. get all project
+    5. get by id
+    6. addmemberToProject
+    7. getProjectMembers
+    8. updateProjectMembers
+    9. updateMemberRole
+    10. delete member
+
+Auth:
+RegisterUser
+verifyUser
+resendVerificationEmail
+Login
+Logout
+refreshAccessToken
+forgotPasswordRequest
+changeCurrentPassword
+getCurrentUser
+
+
+Project:
+getProjects
+getProjectById
+createProject
+updateProject
+deleteProject
+addMemberToProject
+getProjectMembers
+updateProjectMembers
+updateMemberRole
+deleteMember

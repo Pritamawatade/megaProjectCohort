@@ -12,7 +12,6 @@ const ProjectSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-
     },
     createdBy:{
         type: Schema.Types.ObjectId,
