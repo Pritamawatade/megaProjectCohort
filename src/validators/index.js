@@ -4,26 +4,32 @@ const userRegistraionValidator = () => {
   console.log("userregister");
   
   return [
-    body('email')
+    body("email")
       .trim()
       .notEmpty()
-      .withMessage('email is required')
+      .withMessage("Email is required")
       .isEmail()
-      .withMessage('Invalid email'),
-    body('username')
+      .withMessage("Email is invalid"),
+    body("username")
       .trim()
       .notEmpty()
-      .withMessage('username is required')
+      .withMessage("Username is required")
+      .isLowercase()
+      .withMessage("Username must be lowercase")
       .isLength({ min: 3 })
-      .withMessage('username must be 3 char long')
-      .isLength({ max: 12 })
-      .withMessage('username must be max 12 char'),
+      .withMessage("Username must be at lease 3 characters long"),
+    body("password").trim().notEmpty().withMessage("Password is required"),
+    body("fullName")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Full name is required"),
   ];
 };
 
 const userLoginValidator = () => {
   return [
-    body('emali').isEmail().withMessage('email is not valid'),
+    body('email').isEmail().withMessage('email is not valid'),
     body('password').notEmpty().withMessage("password can't be empty"),
   ];
 };

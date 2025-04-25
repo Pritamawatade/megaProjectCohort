@@ -6,7 +6,7 @@ import { validate } from "../middlewares/validator.middleware.js";
 
 const router = Router();
 
-router.route("/register").post(userRegistraionValidator, validate,registerUser)
+router.route("/register").post(userRegistraionValidator(), validate,registerUser)
 
 
 export default router

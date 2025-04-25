@@ -1,26 +1,21 @@
 import { validationResult } from "express-validator";
-import {ApiError} from "../utils/api-error.js"
-export const validate = (req,res,next)=>{
+import { ApiError } from "../utils/api-error.js";
 
-    console.log("validator functions ");
-    
+export const validate = (req, res, next) => {
+
     const errors = validationResult(req);
-    console.log("error L ",errors)
-    console.log(errors.array());
-    
 
-    if(errors.isEmpty()){
-        next()
+    
+    if (errors.isEmpty()) {
+        return  next(); // Stop further execution if no errors
     }
 
-    const extractedErrors = []
+    const extractedErrors = [];
+    errors.array().forEach((err) => extractedErrors.push({
+        [err.path]: err.msg
+    }));
 
-    errors.array().map((err)=> extractedErrors.push({
-            [err.path]: err.msg
-    }))
+    console.log("Extracted errors: ", extractedErrors);
 
-    console.log("EXteacted error : ", extractedErrors);
-    
-
-    throw new ApiError(422, "data is not valid", extractedErrors)
-}
+    throw new ApiError(422, "Data is not valid", extractedErrors);
+};
