@@ -6,30 +6,22 @@ import Mailgen from "mailgen"
 import { ApiResponse } from '../utils/api-response.js';
 
 const registerUser = asyncHandler(async (req, res) => {
-  console.log("1");
   
   
   const { fullName, username, email, password } = req.body;
 
   
-  console.log("2");
   if (!fullName || !username || !email || !password) {
   throw new ApiError(400, "Invalid data")
   }
   
   try {
-    console.log("3");
     const exitingUser = await User.findOne({ email });
-    console.log("4 ");
-    console.log("5");
     
     if (exitingUser) {
-      console.log("6");
       throw new ApiError(400, "User already exisist")
     }
     
-    console.log("7");
-    console.log("8");
     
     const user = await User.create({
       fullName,
@@ -38,7 +30,6 @@ const registerUser = asyncHandler(async (req, res) => {
       password,
     });
    const { unHashedToken, hashedToken, tokenExpiry } = user.generateTemporyToken();
-    console.log("9");
 
     if (!user) {
       throw new ApiError(400, "User not created")
