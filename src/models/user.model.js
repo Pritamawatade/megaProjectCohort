@@ -63,7 +63,14 @@ const UserSchema = new Schema(
     emailVerificationTokenExp: {
       type: Date,
     },
-  },
+    accessToken:{
+      type:String
+    },
+    accessTokenExp:{
+      type: Date,
+      default:  Date.now() + (20*60*1000)
+    }
+  },  
   {
     timestamps: true,
   }
@@ -82,8 +89,9 @@ UserSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+
 UserSchema.methods.generateAccessToken = function () {
-  jwt.sign(
+ return jwt.sign(
     {
       _id: this._id,
       username: this.username,
@@ -94,9 +102,10 @@ UserSchema.methods.generateAccessToken = function () {
         expiresIn: process.env.ACCESS_TOKEN_EXPIRY
     }
   );
+
 };
 UserSchema.methods.generateRefeshToken = function () {
-  jwt.sign(
+ return jwt.sign(
     {
       _id: this._id,
       username: this.username,
