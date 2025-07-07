@@ -1,7 +1,7 @@
 file should be handled by multer. 
 
 assignments: 
-// write down controllers. don't use LLM
+
  // auth controllers
     1.registerUser
     2. login user 
